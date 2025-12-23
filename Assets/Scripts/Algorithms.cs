@@ -12,7 +12,6 @@ namespace Scripts
             Vector2Int.down,
             Vector2Int.left
         };
-//debug test
 
         internal static List<Vector2Int> FindPathAStar(Vector2Int start, Vector2Int goal, int[,] grid, System.Func<int[,], Vector2Int, bool> isWalkable)
         {
@@ -66,12 +65,12 @@ namespace Scripts
             return new List<Vector2Int>();
         }
 
-        internal static float Heuristic(Vector2Int a, Vector2Int b)
+        private static float Heuristic(Vector2Int a, Vector2Int b)
         {
             return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
         }
 
-        internal static List<Vector2Int> RetracePath(Node endNode)
+        private static List<Vector2Int> RetracePath(Node endNode)
         {
             List<Vector2Int> path = new();
             Node currentNode = endNode;
