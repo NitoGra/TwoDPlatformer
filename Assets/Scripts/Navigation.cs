@@ -57,7 +57,7 @@ namespace Scripts
             Vector2 facingDirection = isRightFacing ? Vector2.left : Vector2.right;
 
             _iSeePlayer = Vector2.Dot(directionToPlayer, facingDirection) > 0;
-            Debug.Log(_iSeePlayer ? $"Вижу игрока {(position - (Vector2)_player.position).magnitude} <= {_attackRange}" : "Игрока не вижу");
+          //  Debug.Log(_iSeePlayer ? $"Вижу игрока {(position - (Vector2)_player.position).magnitude} <= {_attackRange}" : "Игрока не вижу");
 
             if (_iSeePlayer && (position - (Vector2)_player.position).magnitude <= _attackRange)
                 _attack();

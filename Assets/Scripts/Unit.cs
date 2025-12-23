@@ -9,6 +9,7 @@ namespace Scripts
     {
         protected readonly int Run = Animator.StringToHash("Run");
         protected readonly int AttackName = Animator.StringToHash("Attack");
+        protected readonly int DeadName = Animator.StringToHash("Dead");
         private const float GroundCheckDistance = 1.2f;
 
         [SerializeField] protected Animator Animator;
@@ -71,12 +72,19 @@ namespace Scripts
         private void Dead()
         {
             this.enabled = false;
-            Animator.enabled = false;
+            Animator.SetTrigger(DeadName);
+            Invoke(nameof(Clear), 2);
         }
 
+        private void Clear()
+        {
+            Animator.enabled = false;
+            transform.localScale = Vector2.zero;
+        }
+        
         public bool TryHeal(int heal)
         {
-            if (_health.TempHealth >= _health.MaxHealth)
+            if (_health.TempHealth >= _health.MaxHealth ||  _health.TempHealth <= 0)
                 return false;
             
             _health.Heal(heal);
