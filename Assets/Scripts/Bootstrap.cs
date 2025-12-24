@@ -19,14 +19,14 @@ namespace Scripts
         { 
             Cursor.lockState = CursorLockMode.Locked;
             
-            _player.Instantiate(
+            _player.Init(
                 _playerSettings.MoveSpeed, 
                 _playerSettings.SprintSpeed, 
                 _playerSettings.JumpForce, 
                 _playerSettings.MaxHealth,
                 _playerSettings.Damage);
             
-            _enemy.Instantiate(
+            _enemy.Init(
                 _enemySettings.MoveSpeed, 
                 _enemySettings.SprintSpeed, 
                 _enemySettings.JumpForce, 

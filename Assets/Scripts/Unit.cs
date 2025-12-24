@@ -24,7 +24,7 @@ namespace Scripts
         private float _jumpForce = 4f;
         private Health _health;
 
-        public virtual void Instantiate(float moveSpeed, float sprintSpeed, float jumpForce, int health, int damage)
+        public virtual void Init(float moveSpeed, float sprintSpeed, float jumpForce, int health, int damage)
         {
             _health = new(health);
             _health.OnDeath += Dead;

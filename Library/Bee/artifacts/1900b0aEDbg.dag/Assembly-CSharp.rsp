@@ -488,7 +488,6 @@
 -analyzer:"C:/Programs/6000.3.2f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Programs/6000.3.2f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
 "Assets/InputSystem_Actions.cs"
-"Assets/Scripts/Algorithms.cs"
 "Assets/Scripts/Attack.cs"
 "Assets/Scripts/Bootstrap.cs"
 "Assets/Scripts/Coin.cs"
@@ -500,9 +499,7 @@
 "Assets/Scripts/InputSystem.cs"
 "Assets/Scripts/Navigation.cs"
 "Assets/Scripts/Player.cs"
-"Assets/Scripts/PlayerCameraController.cs"
 "Assets/Scripts/Spawner.cs"
-"Assets/Scripts/TargetGoal.cs"
 "Assets/Scripts/Unit.cs"
 "Assets/Scripts/UnitSettings.cs"
 -langversion:9.0
