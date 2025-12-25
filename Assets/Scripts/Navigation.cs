@@ -7,8 +7,6 @@ namespace Scripts
     [Serializable]
     internal class Navigation
     {
-        private readonly Action _jump;
-        private readonly Action _attack;
         private LayerMask _playerLayer;
         private List<Transform> _targets;
         private int _targetIndex = 0;
@@ -17,50 +15,48 @@ namespace Scripts
         private float _visualRange;
         private Transform _player;
         private bool _iSeePlayer = false;
+        
+        public Vector2 GetTargetPosition => _iSeePlayer ? GetPlayerPosition : _targets[_targetIndex].position;
+        
+        private Vector2 GetPlayerPosition => _player.position;
+        
+        private float GetDistanceToPlayer(Vector2 position) => (position - GetPlayerPosition).magnitude;
 
-        public Vector2 GetTargetPosition
-            => _iSeePlayer ? _player.position : _targets[_targetIndex].position;
-
-        public Navigation(Action jump, Action attack, float attackRange, List<Transform> targets,
+        public Navigation(float attackRange, List<Transform> targets,
             float visualRange, LayerMask playerLayer)
         {
-            _jump = jump;
             _targets = targets;
             _visualRange = visualRange;
             _playerLayer = playerLayer;
-            _attack = attack;
             _attackRange = attackRange;
         }
 
-        public void PlayerDetection(Vector2 position, bool isRightFacing)
+        public bool DoYouNeedAttack(Vector2 position, bool isRightFacing)
         {
+            TargetCheck(position);
+            
             if (_player == null)
             {
                 Collider2D[] results = Physics2D.OverlapCircleAll(position, _visualRange, _playerLayer);
 
                 if (results.Length == 0)
-                    return;
+                    return false;
 
                 _player = results[0].transform;
             }
-            else
-            {
-                if ((position - (Vector2)_player.position).magnitude > _visualRange)
-                {
-                    _iSeePlayer = false;
-                    _player = null;
-                    return;
-                }
-            }
 
-            Vector2 directionToPlayer = ((Vector2)_player.position - position).normalized;
+            if (GetDistanceToPlayer(position) > _visualRange)
+            {
+                _iSeePlayer = false;
+                _player = null;
+                return false;
+            }
+            
+            Vector2 directionToPlayer = (GetPlayerPosition - position).normalized;
             Vector2 facingDirection = isRightFacing ? Vector2.left : Vector2.right;
 
             _iSeePlayer = Vector2.Dot(directionToPlayer, facingDirection) > 0;
-          //  Debug.Log(_iSeePlayer ? $"Вижу игрока {(position - (Vector2)_player.position).magnitude} <= {_attackRange}" : "Игрока не вижу");
-
-            if (_iSeePlayer && (position - (Vector2)_player.position).magnitude <= _attackRange)
-                _attack();
+            return _iSeePlayer && GetDistanceToPlayer(position) <= _attackRange;
         }
 
         public void TargetCheck(Vector2 position)
@@ -74,11 +70,11 @@ namespace Scripts
                 _targetIndex = 0;
         }
 
-        public void Jump(Vector2 position)
+        public bool DoINeedJump(Vector2 position)
         {
-            if (_iSeePlayer == false && (_lastPosition - position).sqrMagnitude < 0.0005f)
-                _jump();
+            bool isJumpNeed = _iSeePlayer == false && (_lastPosition - position).sqrMagnitude < 0.0005f;
             _lastPosition = position;
+            return isJumpNeed;
         }
     }
 }

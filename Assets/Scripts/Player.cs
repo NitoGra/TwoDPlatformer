@@ -1,46 +1,72 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Scripts
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    internal class Player : Unit
+    internal class Player : UnitHealth
     {
-        private InputSystem _inputSystem;   
+        [SerializeField] private Rigidbody2D _rigidbody;
+        [SerializeField] private Animator _animator;
+        [SerializeField] private Attacker _attackerAction;
 
-        public override void Init(float moveSpeed, float sprintSpeed, float jumpForce, int health, int damage)
-        {
-            _inputSystem = new(t => Jump(), Sprint, SprintCanceled, t => Attack());
-            base.Init(moveSpeed, sprintSpeed, jumpForce, health, damage);
-        }
+        private JumpController _jumper;
+        private AnimationController _animationController;
+        private InputSystemService _inputSystemService;
+        private float _moveSpeed = 2f;
+        private float _sprintSpeed = 2f;
 
-        private void OnEnable()
+        public void Init(float moveSpeed, float sprintSpeed, 
+            float jumpForce, 
+            int damage, int health,
+            LayerMask groundLayer)
         {
-            _inputSystem.Enable();
-        }
+            _sprintSpeed = sprintSpeed;
+            _moveSpeed = moveSpeed;
 
-        private void OnDisable()
-        {
-            _inputSystem.Disable();
-        }
+            _attackerAction.Init(damage);
+            _jumper = new(jumpForce, _rigidbody, groundLayer);
+            _animationController = new(_animator);
+            _inputSystemService = new(
+                t => _jumper.Jump(transform.position),
+                Sprint, SprintCanceled,
+                t => _animationController.Attack());
 
-        protected override void HandleMovement()
-        {
-            if (_inputSystem.MoveInput == Vector2.zero)
-            {
-                Animator.SetBool(Run, false);
-                Rigidbody.linearVelocity = new(Rigidbody.linearVelocity.x/1.5f, Rigidbody.linearVelocity.y);
-                return;
-            }
-            
-            Animator.SetBool(Run, true);
-            Vector2 movement = _inputSystem.MoveInput * MoveSpeed;
-            Animator.transform.eulerAngles = movement.x < 0 ? new Vector3(0, 180, 0) : new Vector3(0, 0, 0);
-            Rigidbody.linearVelocity = new(movement.x, Rigidbody.linearVelocity.y);
+            base.Init(health, _animationController.Dead);
         }
         
-        private void Attack()
+        private void OnEnable() 
+            => _inputSystemService.Enable();
+
+        private void OnDisable() 
+            => _inputSystemService.Disable();
+
+        private void FixedUpdate() 
+            => HandleMovement();
+        
+        private void Rotation(bool isRotateLeft) 
+            => _animator.transform.eulerAngles = isRotateLeft ? new Vector3(0, 180, 0) : new Vector3(0, 0, 0);
+
+        private void Sprint(InputAction.CallbackContext context) 
+            => _moveSpeed += _sprintSpeed;
+
+        private void SprintCanceled(InputAction.CallbackContext context) 
+            => _moveSpeed -= _sprintSpeed;
+        
+        private void HandleMovement()
         {
-            Animator.SetTrigger(AttackName);
+            if (_inputSystemService.MoveInput == Vector2.zero)
+            {
+                _rigidbody.linearVelocity = new(_rigidbody.linearVelocity.x / 1.5f, _rigidbody.linearVelocity.y);
+                _animationController.StopRun();
+                return;
+            }
+
+            _animationController.StartRun();
+            _rigidbody.linearVelocity =
+                new((_inputSystemService.MoveInput * _moveSpeed).x, _rigidbody.linearVelocity.y);
+            
+            Rotation(_inputSystemService.MoveInput.x < 0);
         }
     }
 }

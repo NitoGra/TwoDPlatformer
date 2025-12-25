@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2472176339037593560}
   - component: {fileID: 3848930023570156564}
-  - component: {fileID: 1251349184756050520}
   - component: {fileID: 8898617329114931879}
   m_Layer: 0
   m_Name: Main Camera
@@ -85,14 +84,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &1251349184756050520
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2361428041447805031}
-  m_Enabled: 1
 --- !u!114 &8898617329114931879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,7 +284,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.95, y: 1.65}
+  m_Size: {x: 0.5, y: 1.65}
   m_Direction: 0
 --- !u!50 &8511174941494903503
 Rigidbody2D:
@@ -334,12 +325,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7afcc22be5a46a145b554dbf67881d77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scripts.Player
-  Animator: {fileID: 6489409374819146089}
-  Rigidbody: {fileID: 8511174941494903503}
-  _attackAction: {fileID: 7937865303975944697}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
+  _rigidbody: {fileID: 8511174941494903503}
+  _animator: {fileID: 6489409374819146089}
+  _attackerAction: {fileID: 7937865303975944697}
 --- !u!1001 &4914339349729450142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -396,6 +384,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6344533244025236002, guid: d391661acc661dc439d17f236465cc03, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6885037617504423680, guid: d391661acc661dc439d17f236465cc03, type: 3}
       propertyPath: m_Name
       value: UnitDisplay
@@ -403,8 +395,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6885037617504423680, guid: d391661acc661dc439d17f236465cc03, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2075011949672995145}
   m_SourcePrefab: {fileID: 100100000, guid: d391661acc661dc439d17f236465cc03, type: 3}
+--- !u!1 &1999506588520716190 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6885037617504423680, guid: d391661acc661dc439d17f236465cc03, type: 3}
+  m_PrefabInstance: {fileID: 4914339349729450142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2075011949672995145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999506588520716190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99e47269246b4b4490f9a2da4209b11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Scripts.TurningOffController
+  _objects:
+  - {fileID: 6164048229774471806}
 --- !u!4 &2035471755847332540 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6344533244025236002, guid: d391661acc661dc439d17f236465cc03, type: 3}

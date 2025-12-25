@@ -8,10 +8,10 @@ namespace Scripts
 
         public void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.collider.TryGetComponent<IHealable>(out var unit) == false)
+            if (other.collider.TryGetComponent(out IHealable healable) == false)
                 return;
 
-            if (unit.TryHeal(_treatableHealth))
+            if (healable.TryHeal(_treatableHealth))
                 Destroy(gameObject);
         }
     }

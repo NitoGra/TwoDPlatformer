@@ -9,6 +9,7 @@ namespace Scripts
         [SerializeField] private Enemy _enemy;
         [Space]
         [SerializeField]private  LayerMask _playerLayer;
+        [SerializeField] private LayerMask _groundLayer;
         [Space]
         [SerializeField] private UnitSettings _playerSettings;
         [SerializeField] private EnemySettings _enemySettings;
@@ -20,22 +21,18 @@ namespace Scripts
             Cursor.lockState = CursorLockMode.Locked;
             
             _player.Init(
-                _playerSettings.MoveSpeed, 
-                _playerSettings.SprintSpeed, 
+                _playerSettings.MoveSpeed,   _playerSettings.SprintSpeed, 
                 _playerSettings.JumpForce, 
-                _playerSettings.MaxHealth,
-                _playerSettings.Damage);
-            
+                _playerSettings.Damage,  _playerSettings.MaxHealth,
+                _groundLayer);
+
             _enemy.Init(
-                _enemySettings.MoveSpeed, 
-                _enemySettings.SprintSpeed, 
+                _enemySettings.MoveSpeed,
                 _enemySettings.JumpForce, 
-                _enemySettings.MaxHealth,
-                _patrolTargets,
-                _enemySettings.VisualRange,
-                _enemySettings.AttackRange,
-                _enemySettings.Damage,
-                _playerLayer);
+                _enemySettings.VisualRange, _enemySettings.AttackRange,
+                _enemySettings.Damage, _enemySettings.MaxHealth, 
+                _playerLayer, _groundLayer,
+                _patrolTargets);
         }
     }
 }

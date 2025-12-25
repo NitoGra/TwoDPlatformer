@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Scripts.UnitSettings
   MoveSpeed: 5
   SprintSpeed: 5
-  JumpForce: 5
+  JumpForce: 6
   MaxHealth: 5
+  Damage: 1
