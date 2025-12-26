@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2472176339037593560
 Transform:
   m_ObjectHideFlags: 0
@@ -328,6 +328,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 8511174941494903503}
   _animator: {fileID: 6489409374819146089}
   _attackerAction: {fileID: 7937865303975944697}
+  _playerCamera: {fileID: 0}
 --- !u!1001 &4914339349729450142
 PrefabInstance:
   m_ObjectHideFlags: 0

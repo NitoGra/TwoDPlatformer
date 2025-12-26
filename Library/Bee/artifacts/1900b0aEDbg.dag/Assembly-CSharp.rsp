@@ -488,7 +488,6 @@
 -analyzer:"C:/Programs/6000.3.2f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Programs/6000.3.2f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
 "Assets/InputSystem_Actions.cs"
-"Assets/Scripts/AnimationController.cs"
 "Assets/Scripts/Attacker.cs"
 "Assets/Scripts/Bootstrap.cs"
 "Assets/Scripts/Coin.cs"
@@ -504,6 +503,7 @@
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/Spawner.cs"
 "Assets/Scripts/TurningOffController.cs"
+"Assets/Scripts/UnitAnimationController.cs"
 "Assets/Scripts/UnitHealth.cs"
 "Assets/Scripts/UnitSettings.cs"
 -langversion:9.0
