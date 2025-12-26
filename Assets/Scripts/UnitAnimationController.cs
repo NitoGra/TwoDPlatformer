@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Scripts
 {
     [Serializable]
-    internal class AnimationController
+    internal class UnitAnimationController
     {
         protected readonly int RunName = Animator.StringToHash("Run");
         protected readonly int AttackName = Animator.StringToHash("Attack");
@@ -12,7 +12,7 @@ namespace Scripts
         
         private Animator _animator;
     
-        public AnimationController(Animator animator)
+        public UnitAnimationController(Animator animator)
         {
             _animator = animator;
         }

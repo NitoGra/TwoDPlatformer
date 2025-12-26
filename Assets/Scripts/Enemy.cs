@@ -11,7 +11,7 @@ namespace Scripts
         [SerializeField] private Attacker _attackerAction;
 
         private JumpController _jumper;
-        private AnimationController _animationController;
+        private UnitAnimationController _unitAnimationController;
         private float _moveSpeed = 2f;
 
         public void Init(float moveSpeed, float jumpForce,
@@ -24,9 +24,9 @@ namespace Scripts
 
             _attackerAction.Init(damage);
             _jumper = new(jumpForce, _rigidbody, groundLayer);
-            _animationController = new(_animator);
+            _unitAnimationController = new(_animator);
 
-            base.Init(health, _animationController.Dead);
+            base.Init(health, _unitAnimationController.Dead);
             _navigation = new(
                 attackRange, 
                 patrolTargets, 
@@ -48,7 +48,7 @@ namespace Scripts
             _rigidbody.linearVelocity = new(movement.x, _rigidbody.linearVelocity.y);
 
             Rotation(movement.x < 0);
-            _animationController.StartRun();
+            _unitAnimationController.StartRun();
             
             if (_navigation.DoINeedJump(myPosition))
                 _jumper.Jump(myPosition);
@@ -59,8 +59,8 @@ namespace Scripts
 
         private void Attack()
         {
-            _animationController.StopRun();
-            _animationController.Attack();
+            _unitAnimationController.StopRun();
+            _unitAnimationController.Attack();
         }
     }
 }

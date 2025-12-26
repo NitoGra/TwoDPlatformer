@@ -9,9 +9,10 @@ namespace Scripts
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Animator _animator;
         [SerializeField] private Attacker _attackerAction;
+        [SerializeField] private Camera _playerCamera;
 
         private JumpController _jumper;
-        private AnimationController _animationController;
+        private UnitAnimationController _unitAnimationController;
         private InputSystemService _inputSystemService;
         private float _moveSpeed = 2f;
         private float _sprintSpeed = 2f;
@@ -26,13 +27,14 @@ namespace Scripts
 
             _attackerAction.Init(damage);
             _jumper = new(jumpForce, _rigidbody, groundLayer);
-            _animationController = new(_animator);
+            _unitAnimationController = new(_animator);
             _inputSystemService = new(
                 t => _jumper.Jump(transform.position),
                 Sprint, SprintCanceled,
-                t => _animationController.Attack());
-
-            base.Init(health, _animationController.Dead);
+                t => _unitAnimationController.Attack());
+            
+            _playerCamera.gameObject.SetActive(true);
+            base.Init(health, _unitAnimationController.Dead);
         }
         
         private void OnEnable() 
@@ -58,11 +60,11 @@ namespace Scripts
             if (_inputSystemService.MoveInput == Vector2.zero)
             {
                 _rigidbody.linearVelocity = new(_rigidbody.linearVelocity.x / 1.5f, _rigidbody.linearVelocity.y);
-                _animationController.StopRun();
+                _unitAnimationController.StopRun();
                 return;
             }
 
-            _animationController.StartRun();
+            _unitAnimationController.StartRun();
             _rigidbody.linearVelocity =
                 new((_inputSystemService.MoveInput * _moveSpeed).x, _rigidbody.linearVelocity.y);
             
