@@ -1,66 +1,79 @@
 ﻿using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Scripts
 {
-    internal class Enemy : UnitHealth
+    internal class Enemy : MonoBehaviour, IDamaging
     {
-        [SerializeField] private Navigation _navigation;
+        [SerializeField] private EnemyContext _enemyContext;
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Animator _animator;
         [SerializeField] private Attacker _attackerAction;
 
         private JumpController _jumper;
-        private UnitAnimationController _unitAnimationController;
+        private CharacterAnimationController _characterAnimationController;
         private float _moveSpeed = 2f;
+        private HealthModel _health;
+        
+        private float MoveDirection => (_enemyContext.GetTargetPosition - (Vector2)transform.position).normalized.x;
 
-        public void Init(float moveSpeed, float jumpForce,
-            float visualRange, float attackRange,
-            int damage, int health,
-            LayerMask playerLayer, LayerMask groundLayer,
-            List<Transform> patrolTargets)
+        public void Init(EnemyConfig enemyConfig, List<Transform> patrolTargets,
+            Action<int,int> viewHealth, float deadTime)
         {
-            _moveSpeed = moveSpeed;
+            _moveSpeed = enemyConfig.MoveSpeed;
 
-            _attackerAction.Init(damage);
-            _jumper = new(jumpForce, _rigidbody, groundLayer);
-            _unitAnimationController = new(_animator);
+            _attackerAction.Init(enemyConfig.Damage);
+            _jumper = new(enemyConfig.JumpForce, _rigidbody, enemyConfig.GroundLayer);
+            _characterAnimationController = new(_animator);
 
-            base.Init(health, _unitAnimationController.Dead);
-            _navigation = new(
-                attackRange, 
-                patrolTargets, 
-                visualRange, 
-                playerLayer);
+            _enemyContext = new(patrolTargets,enemyConfig, transform);
+            
+            _health = new(enemyConfig.MaxHealth);
+            _health.Changed += viewHealth;
+            _health.Died += () => DelayedDeath(deadTime);
+            _health.Died += _characterAnimationController.SetDead;
         }
         
         private void FixedUpdate()
-            => HandleMovement();
+        {
+            HandleMovement();
 
-        private void Rotation(bool isRotateLeft) 
-            => _animator.transform.eulerAngles = isRotateLeft ? new Vector3(0, 180, 0) : new Vector3(0, 0, 0);
+            _enemyContext.TargetCheck();
+            _enemyContext.DetectPlayer(MoveDirection < 0);
+            
+            if (_enemyContext.CanAttack)
+                Attack();
+            else if (_enemyContext.CanJump())
+                _jumper.Jump(transform.position);
+        }
+        
+        private void OnCollisionEnter2D(Collision2D other) =>
+            ContactService.ContactCheck(other, _health);
+
+        private void Rotation(bool isRotateLeft) =>
+            _animator.transform.eulerAngles = isRotateLeft ? new Vector3(0, 180, 0) : new Vector3(0, 0, 0);
 
         private void HandleMovement()
         {
-            Vector2 myPosition = transform.position;
-            Vector2 movement = (_navigation.GetTargetPosition - myPosition).normalized * _moveSpeed;
-            
-            _rigidbody.linearVelocity = new(movement.x, _rigidbody.linearVelocity.y);
-
-            Rotation(movement.x < 0);
-            _unitAnimationController.StartRun();
-            
-            if (_navigation.DoINeedJump(myPosition))
-                _jumper.Jump(myPosition);
-
-            if (_navigation.DoYouNeedAttack(myPosition, movement.x < 0))
-                Attack();
+            _rigidbody.linearVelocity = new(MoveDirection * _moveSpeed, _rigidbody.linearVelocity.y);
+            Rotation(MoveDirection < 0);
+            _characterAnimationController.StartRun();
         }
 
         private void Attack()
         {
-            _unitAnimationController.StopRun();
-            _unitAnimationController.Attack();
+            _characterAnimationController.StopRun();
+            _characterAnimationController.Attack();
         }
+
+        private void DelayedDeath(float delay) => 
+            Invoke(nameof(Death), delay);
+
+        private void Death() => 
+            gameObject.SetActive(false);
+
+        public void TakeDamage(int damage) =>
+            _health.TakeDamage(damage);
     }
 }

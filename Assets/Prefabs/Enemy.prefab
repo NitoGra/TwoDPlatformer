@@ -71,7 +71,7 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.95, y: 1.65}
+  m_Size: {x: 0.5, y: 1.65}
   m_Direction: 0
 --- !u!50 &3688412615505317500
 Rigidbody2D:
@@ -112,12 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 931ba7d40e4d4946a02bcbd028f39d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scripts.Enemy
-  Animator: {fileID: 5425058974257199532}
-  Rigidbody: {fileID: 3688412615505317500}
-  _attackAction: {fileID: 9182377272154784060}
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
+  _rigidbody: {fileID: 3688412615505317500}
+  _animator: {fileID: 5425058974257199532}
+  _attackerAction: {fileID: 9182377272154784060}
 --- !u!1 &2973457565615889628
 GameObject:
   m_ObjectHideFlags: 0

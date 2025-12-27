@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 1057
   m_ShowMode: 0
-  m_Title: Animator
+  m_Title: Scene
   m_RootView: {fileID: 4}
   m_MinSize: {x: 100, y: 56}
   m_MaxSize: {x: 8096, y: 8096}
@@ -43,7 +43,7 @@ MonoBehaviour:
     width: 1920
     height: 1037
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Hierarchy
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: AnimatorControllerTool
+  m_Name: SceneView
   m_EditorClassIdentifier: UnityEditor.dll::UnityEditor.DockArea
   m_Children: []
   m_Position:
@@ -69,12 +69,12 @@ MonoBehaviour:
     height: 1057
   m_MinSize: {x: 50, y: 76}
   m_MaxSize: {x: 4000, y: 4026}
-  m_ActualView: {fileID: 20}
+  m_ActualView: {fileID: 25}
   m_Panes:
   - {fileID: 25}
   - {fileID: 20}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 63
+  controlID: 122
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 56}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 64
+  controlID: 123
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 56}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 310
+  controlID: 228
   draggingID: 0
 --- !u!114 &14
 MonoBehaviour:
@@ -781,8 +781,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Animator\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 0
-    y: 26
+    x: 1920
+    y: 23
     width: 1920
     height: 1031
   m_SerializedDataModeController:
@@ -802,14 +802,14 @@ MonoBehaviour:
     m_KeySerializationHelper:
     - {fileID: -3796047615622949978, guid: 63326bde512276141ba468fc59aa7877, type: 2}
     m_ValueSerializationHelper:
-    - e00: 1.2542602
+    - e00: 2.552941
       e01: 0
       e02: 0
-      e03: 0.3270874
+      e03: -597.7058
       e10: 0
-      e11: 1.2542602
+      e11: 2.552941
       e12: 0
-      e13: 364.7486
+      e13: 433.45294
       e20: 0
       e21: 0
       e22: 1
@@ -983,13 +983,9 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -1402
-      - m_Data: -1378
-      - m_Data: -1356
-      - m_Data: -1342
+      - m_Data: -1358
       - m_Data: -1340
-      - m_Data: 52194
-      - m_Data: 52252
+      - m_Data: 52310
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1139,8 +1135,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1920
-    y: 23
+    x: 0
+    y: 26
     width: 1920
     height: 1031
   m_SerializedDataModeController:
@@ -1994,7 +1990,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52870
+    - m_Data: 52876
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2027,7 +2023,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52870
+    - m_Data: 52876
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2159,7 +2155,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52870
+    - m_Data: 52876
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2192,7 +2188,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52870
+    - m_Data: 52876
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2292,7 +2288,7 @@ MonoBehaviour:
     m_DynamicPanelBehavior: 0
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 52218
+  m_LastSelectedObjectID: -1358
 --- !u!114 &30
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -2366,7 +2362,7 @@ MonoBehaviour:
       m_Data: 52978
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52870
+    - m_Data: 52876
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2399,7 +2395,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52870
+    - m_Data: 52876
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2533,7 +2529,7 @@ MonoBehaviour:
       m_Data: 52970
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52870
+    - m_Data: 52876
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2566,7 +2562,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52870
+    - m_Data: 52876
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2867,7 +2863,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Units
+    - Assets/Prefabs
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -2877,7 +2873,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Units
+  - Assets/Prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "C:\\Programs\\UnityProjects\\\u041A\u0443\u0440\u0441\u044B\u041D\u043E\u0432\u044B\u0435\\\u0414\u0432\u0430\u0414\u044D\u041F\u043B\u0430\u0442\u0444\u043E\u0440\u043C\u0435\u0440"
   m_LockTracker:
@@ -2886,12 +2882,12 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: 52984
+    - m_Data: 53038
     m_LastClickedID:
-      m_Data: 52984
+      m_Data: 53038
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52870
+    - m_Data: 52876
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2924,7 +2920,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52870
+    - m_Data: 52876
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2952,8 +2948,8 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 52218
-    m_LastClickedInstanceID: 52218
+    - m_Data: -1358
+    m_LastClickedInstanceID: -1358
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
@@ -3027,7 +3023,7 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: 52216
+      - m_Data: -1356
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:

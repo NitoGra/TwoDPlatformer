@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: EnemySettings
   m_EditorClassIdentifier: Assembly-CSharp::Scripts.EnemySettings
   MoveSpeed: 2
-  SprintSpeed: 2
   JumpForce: 7
   MaxHealth: 2
   Damage: 1
-  VisualRange: 10
-  AttackRange: 1.5
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  VisualRange: 5
+  AttackRange: 2

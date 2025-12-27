@@ -1,6 +1,6 @@
 ﻿namespace Scripts
 {
-    internal interface IDamageable
+    internal interface IDamaging
     {
         public void TakeDamage(int damage);
     }

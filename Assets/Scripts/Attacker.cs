@@ -14,7 +14,7 @@ namespace Scripts
 
         public void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.TryGetComponent<IDamageable>(out var unit))
+            if (other.TryGetComponent<IDamaging>(out var unit))
                 unit.TakeDamage(_damage);
         }
     }
