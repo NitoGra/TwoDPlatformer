@@ -2,8 +2,8 @@
 
 namespace Scripts
 {
-    [CreateAssetMenu(fileName = "AnimationClipSettings", menuName = "Game2D/AnimationClips")]
-    internal class AnimationClipSettings : ScriptableObject
+    [CreateAssetMenu(fileName = "AnimationClipConfig", menuName = "Game2D/AnimationClips")]
+    internal class AnimationClipConfig : ScriptableObject
     {        
         [SerializeField] private AnimationClip _deadClip;
         

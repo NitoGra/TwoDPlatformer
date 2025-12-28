@@ -21,6 +21,8 @@ namespace Scripts
 
         public void Init(PlayerConfig playerConfig, Action<int, int> viewHealth, float deadTime)
         {
+            _playerCamera.gameObject.SetActive(true);
+            
             _sprintSpeed = playerConfig.SprintSpeed;
             _moveSpeed = playerConfig.MoveSpeed;
 
@@ -31,8 +33,7 @@ namespace Scripts
                 t => _jumper.Jump(transform.position),
                 Sprint, SprintCanceled,
                 t => _characterAnimationController.Attack());
-
-            _playerCamera.gameObject.SetActive(true);
+            
             _health = new(playerConfig.MaxHealth);
             _health.Changed += viewHealth;
             _health.Died += () => DelayedDeath(deadTime/_animator.speed);

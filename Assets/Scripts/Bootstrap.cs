@@ -17,7 +17,7 @@ namespace Scripts
         [SerializeField] private PlayerConfig _playerConfig;
         [SerializeField] private EnemyConfig _enemyConfig;
         [Space] 
-        [SerializeField] private AnimationClipSettings _animationClipSettings;
+        [SerializeField] private AnimationClipConfig _animationClipConfig;
         [Space] 
         [SerializeField] private List<Transform> _patrolTargets = new();
 
@@ -26,9 +26,9 @@ namespace Scripts
             Cursor.lockState = CursorLockMode.Locked;
 
             _player.Init(_playerConfig, 
-                _playerHealth.Changed,_animationClipSettings.GetDeadClipLength);
+                _playerHealth.Changed,_animationClipConfig.GetDeadClipLength);
             _enemy.Init(_enemyConfig, _patrolTargets,
-                _playerHealth.Changed,_animationClipSettings.GetDeadClipLength);
+                _playerHealth.Changed,_animationClipConfig.GetDeadClipLength);
         }
     }
 }

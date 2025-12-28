@@ -2,10 +2,11 @@
 
 namespace Scripts
 {
-    internal class FirstAidKit : MonoBehaviour, IHealabling
+    internal class FirstAidKit : MonoBehaviour, IHealable
     {
         [SerializeField] private int _treatableHealth = 3;
 
-        public int Heal() => _treatableHealth;
+        public int GetHeal() => 
+            _treatableHealth;
     }
 }

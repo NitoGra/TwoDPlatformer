@@ -46,6 +46,7 @@ namespace Scripts
                 _player = null;
                 return;
             }
+
             Vector2 directionToPlayer = (GetPlayerPosition - GetCurrentPosition).normalized;
             Vector2 facingDirection = isRightFacing ? Vector2.left : Vector2.right;
             _seePlayer = Vector2.Dot(directionToPlayer, facingDirection) > 0;

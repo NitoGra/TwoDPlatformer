@@ -6,13 +6,13 @@ namespace Scripts
     {
         public static void ContactCheck(Collision2D other, HealthModel health)
         {
-            if (other.collider.TryGetComponent(out IHealabling healabling) == false) 
+            if (other.collider.TryGetComponent(out IHealable healable) == false) 
                 return;
                 
             if(health.CurrentHealth >= health.MaxHealth)
                 return;
                     
-            health.Heal(healabling.Heal());
+            health.Heal(healable.GetHeal());
             MonoBehaviour.Destroy(other.gameObject);
         }
     }
