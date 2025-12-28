@@ -46,6 +46,9 @@ namespace Scripts
         private void OnDisable() =>
             _inputSystemService.Disable();
 
+        private void OnDestroy() => 
+            _inputSystemService?.Dispose();
+
         private void FixedUpdate() =>
             HandleMovement();
 

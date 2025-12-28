@@ -41,11 +41,11 @@ namespace Scripts
 
             _enemyContext.TargetCheck();
             _enemyContext.DetectPlayer(MoveDirection < 0);
-            
-            if (_enemyContext.CanAttack)
-                Attack();
-            else if (_enemyContext.CanJump())
+
+            if (_enemyContext.CanJump())
                 _jumper.Jump(transform.position);
+            else if (_enemyContext.CanAttack)
+                Attack();
         }
         
         private void OnCollisionEnter2D(Collision2D other) =>

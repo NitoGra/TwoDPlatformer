@@ -1635,7 +1635,7 @@ MonoBehaviour:
     m_Bits: 256
   _playerConfig: {fileID: 11400000, guid: 30a66b848baf2ae4790323229f2fce07, type: 2}
   _enemyConfig: {fileID: 11400000, guid: 969966aef88812f49bb6d777424709e1, type: 2}
-  _animationClipSettings: {fileID: 11400000, guid: 0b1c8dc9c7d96774d8b69dd2591797de, type: 2}
+  _animationClipConfig: {fileID: 11400000, guid: 0b1c8dc9c7d96774d8b69dd2591797de, type: 2}
   _patrolTargets:
   - {fileID: 599001734}
   - {fileID: 1669915576}
@@ -2572,9 +2572,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 287678528178577218, guid: f8ea482ec7a8ca843bdb9485ed214a6d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 790665067235309403, guid: f8ea482ec7a8ca843bdb9485ed214a6d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1292601985858932419, guid: f8ea482ec7a8ca843bdb9485ed214a6d, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6795137155350643114, guid: f8ea482ec7a8ca843bdb9485ed214a6d, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8230051302259600638, guid: f8ea482ec7a8ca843bdb9485ed214a6d, type: 3}
       propertyPath: m_LocalPosition.x

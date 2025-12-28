@@ -22,5 +22,5 @@ MonoBehaviour:
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 512
-  VisualRange: 5
+  VisualRange: 4
   AttackRange: 2

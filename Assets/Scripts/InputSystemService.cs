@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Scripts
 {
-    internal class InputSystemService
+    internal class InputSystemService : IDisposable
     {
         private readonly InputSystem_Actions _inputs;
         private readonly Action<InputAction.CallbackContext> _jump;
@@ -23,49 +23,23 @@ namespace Scripts
             _onSprintCanceled = onSprintCanceled;
             
             _inputs = new InputSystem_Actions();
-            _inputs.Player.Enable();
+            Subscribe();
         }
 
         public Vector2 Look { get; private set; }
         public Vector2 MoveInput { get; private set; }
-
-        public void Enable()
-        {
-            SubscribeInput(_inputs.Player.Move, OnMove, OnMoveCanceled);
-            SubscribeInput(_inputs.Player.Look, OnMouseMove, OnMouseCanceled);
-            SubscribeInput(_inputs.Player.Sprint, _sprint, _onSprintCanceled);
-            SubscribeInput(_inputs.Player.Attack, _attack);
-            SubscribeInput(_inputs.Player.Jump, _jump);
-        }
-
-        public void Disable()
-        {
-            UnsubscribeInput(_inputs.Player.Move, OnMove, OnMoveCanceled);
-            UnsubscribeInput(_inputs.Player.Look, OnMouseMove, OnMouseCanceled);
-            UnsubscribeInput(_inputs.Player.Sprint, _sprint, _onSprintCanceled);
-            UnsubscribeInput(_inputs.Player.Attack, _attack);
-            UnsubscribeInput(_inputs.Player.Jump, _jump);
-        }
-
-        private void OnMove(InputAction.CallbackContext context)
-        {
+        
+        private void OnMove(InputAction.CallbackContext context) => 
             MoveInput = context.ReadValue<Vector2>();
-        }
 
-        private void OnMoveCanceled(InputAction.CallbackContext context)
-        {
+        private void OnMoveCanceled(InputAction.CallbackContext context) => 
             MoveInput = Vector2.zero;
-        }
 
-        private void OnMouseMove(InputAction.CallbackContext context)
-        {
+        private void OnMouseMove(InputAction.CallbackContext context) => 
             Look = context.ReadValue<Vector2>();
-        }
 
-        private void OnMouseCanceled(InputAction.CallbackContext context)
-        {
+        private void OnMouseCanceled(InputAction.CallbackContext context) => 
             Look = Vector2.zero;
-        }
 
         private void SubscribeInput(InputAction input,
             Action<InputAction.CallbackContext> performed = null,
@@ -88,5 +62,29 @@ namespace Scripts
             if (canceled != null)
                 input.canceled -= canceled;
         }
+        
+        private void Subscribe()
+        {
+            SubscribeInput(_inputs.Player.Move, OnMove, OnMoveCanceled);
+            SubscribeInput(_inputs.Player.Look, OnMouseMove, OnMouseCanceled);
+            SubscribeInput(_inputs.Player.Sprint, _sprint, _onSprintCanceled);
+            SubscribeInput(_inputs.Player.Attack, _attack);
+            SubscribeInput(_inputs.Player.Jump, _jump);
+        }
+
+        public void Dispose()
+        {
+            UnsubscribeInput(_inputs.Player.Move, OnMove, OnMoveCanceled);
+            UnsubscribeInput(_inputs.Player.Look, OnMouseMove, OnMouseCanceled);
+            UnsubscribeInput(_inputs.Player.Sprint, _sprint, _onSprintCanceled);
+            UnsubscribeInput(_inputs.Player.Attack, _attack);
+            UnsubscribeInput(_inputs.Player.Jump, _jump);
+        }
+        
+        public void Enable() =>
+            _inputs.Player.Enable();
+        
+        public void Disable() => 
+            _inputs.Player.Disable();
     }
 }
